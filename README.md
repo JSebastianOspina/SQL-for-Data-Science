@@ -19,10 +19,11 @@ description varchar(100) NULL
 - Multiple relational operators are avaliable  >, <, >=, !
 
 The sintaxis is simple. 
+´´
 SELECT <columnas>
 FROM <tabla>
 LIMIT <numero de resultados>
-  
+´´
 ## Limiting (not filtering) results
 
 The sintaxis is simple. 
