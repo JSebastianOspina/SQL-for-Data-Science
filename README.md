@@ -34,7 +34,28 @@ FROM <tabla>
 LIMIT <numero de resultados>
 ```
 ## Advanced Filtering: IN, OR, and NOT
+### Between Operator
+It requieres a range, it selects multiple registers that match this range.
+```
+SELECT * FROM Shoes WHERE value BETWEEN 100 AND 200 LIMIT (30);
+```
+This example will SELECT the first 30 registers (if avaliable) that have a value BETWEEN 100 AND 200 $. 
 
+### In Operator
+- It is use for selecting specifyc information (for example, IDS), it doesnt work with ranges.
+- The values must be separed with comas.
+
+```
+SELECT * FROM Shoes WHERE Id IN (3,5,1,10)
+```
+This example will select all the registers with Id: 3,5,1,10. 
+
+### In Operator
+The second condition will be not evaluate if the first condition its true.
+```
+SELECT * FROM Shoes WHERE Brand = 'Adidas' OR 'Nike'
+```
+If there are any shoes with the Adidas's brand, the shoes with Nike's brand will be search.
 
 # Adding registers.
 There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
