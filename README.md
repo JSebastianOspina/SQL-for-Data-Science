@@ -353,17 +353,6 @@ THEN result_expression
 ELSE else_result_expression
 END
 ```
-# Adding registers.
-There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
-```
-INSER INTO nombre_tabla 
-VALUES
-(
-'1',
-'Nombre 1',
-'Descripcion 1',
-);
-```
 
 ```
 INSER INTO nombre_tabla 
@@ -384,6 +373,45 @@ tracks;
 ```
 ID | TRACK_ID | NAME  | BYTES | BYTESCATEGORY
 1     2461      Hello   30000     small
+
+# Views 
+Only store for the duration of the session
+Makes the ilusion of having a table
+```
+CREATE [TEMP] VIEW [IF NOT EXISTS]
+view_name(column-name-list
+AS
+select-statment;
+```
+```
+CREATE VIEW my_view
+AS
+SELECT 
+r.regiondescription
+,t.territorydescription
+,e.laastname
+,e.firstname
+,e.hiredate
+e.reportsto
+FROM Region r
+INNER JOIN TErritories t on r.regionid = t.regionid
+ÍNNER JOIN Employerterritories on territoyID = et.TerritoryID
+INNER JOIN Employees e on et.employeeid = e.EmployeeID
+
+```
+![image](https://user-images.githubusercontent.com/55632072/118411698-75d36700-b65b-11eb-9fd6-33b79f643cab.png)
+
+# Adding registers.
+There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
+```
+INSER INTO nombre_tabla 
+VALUES
+(
+'1',
+'Nombre 1',
+'Descripcion 1',
+);
+```
 
 This specifict way, specify the order of the columns and then the information to ve added
 Do not use quotes for the column names, however, the information does require them.
