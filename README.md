@@ -241,6 +241,87 @@ UNION
 SELECT column2
 FROM table2
 ```
+# Methods for Modifying Data 
+## Working with Text Strings
+These are the most common string functions:
+- Concatenate
+- Substring
+- Trim
+- Upper
+- Lower
+
+### Concatenations
+```
+SELECT
+CompanyName
+,ContactName
+,CompanyName || '('|| ContactName ||'))'
+
+OR
+
+CompanyName
+,ContactName
+,CONCAT(CompanyName, '(',  ContactName, ')'
+```
+## Trimming Strings
+Trims the leading or trailing space from a strin
+TRIM,RTRIM,LTRIM
+```
+SELECT TRIM ("      You are the best.      ") as CleanString
+```
+### Substring
+Returns the specified number of characters from a partcular position of a given sring
+```
+SUBSTR (string name, string position, number of characters to be returned)
+```
+### Upper and LOWER
+```
+SELECT UPPER (column_name) from table_name;
+SELECT LOWER (column_name) from table_name;
+SELECT UCASE (column_name) from table_name;
+```
+# Working with Data and Time Strings 
+## Date Formats
+- Date: YYYY-MM-DD
+- DATETIME YYYY-MM-DD HH:MI:SS
+- TIMESTAMP: YYYY-MM-DD HH:MI:SS
+If you query a DATETIME with:
+```
+WHERE PurchaseDate = '2016-12-12' 
+```
+you will get no results
+### SQLite Date Time Functions
+DATE (timestring,modifier,modifier,...)
+TIME (timestring,modifier,modifier,...)
+DATETIME (timestring,modifier,modifier,...)
+JULIANDAY (timestring,modifier,modifier,...)
+STRFTIME (format, timestring,modifier,modifier,...)
+### Example
+```
+SELECT Bithdate
+,STRFTIME ('%Y',Birthdate) as Year
+,STRFTIME ('%m',Birthdate) as Month
+,STRFTIME ('%d',Birthdate) as Day
+```
+#### Result
+Bithdate            | Year | Month | Day
+1962-02-18 00:00:00 | 1962 | 02    | 18
+
+### Modifiers
+NNN days start of year
+NNN hours start of a day
+NNN minutes
+NNN.NNNN seconds
+NNN months
+NNN years
+
+### Compute current date
+This is very usefull when we want to calculte how many time have pass since a determined record have been save
+```
+SELECT DATE('now')
+or
+SELECT STRFTIME('%Y %m %d', 'now')
+```
 
 # Adding registers.
 There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
