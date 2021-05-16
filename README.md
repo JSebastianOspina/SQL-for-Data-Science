@@ -124,7 +124,6 @@ Count everything, IGNORING null values (will give the total rows in the table Or
 ```
 SELECT COUNT(OrderID) AS Total FROM Orders
 ```
-
 - All the other operators work the same way. 
 - The Distinc word helps to not operate duplicated rows. 
 
@@ -134,6 +133,112 @@ SELECT COUNT(OrderID) AS Total FROM Orders
 - Nulls will be grouped together.
 - HAVING is used to replace WHERE, it only works in the groups that GROUP BY will make. 
 - It used with AGGREGATE FUNCTIONS
+
+# SQL Joins
+## Beefits of Breaking data into tables
+- Efficient storage
+- Easier manipulation
+- Greater scalability
+- Logically models a process
+
+
+## Joins
+- Allows data retrieval freom multiple tables in one query. 
+- Joins are not physical they persist for the duration of the query execution.
+
+
+### Cartesian (Cross) Joins
+- In this kind of join all the rows from the first table joins with all the rows of another table.
+ For examen if we have the table A with 10 records, and the table B with 8 records, we will get a result of 80 records after executing the join.
+ this is AxB
+ - Not frequently used.
+ - Computationally taxing
+
+```
+// Here we got the same typic select statment. 
+Select product_name
+,unit_price
+,company_name
+FROM suppliers
+//then, we add the join statment
+CROSS JOIN products;
+```
+### Inner Joins
+- The INNER JOIN are use to slect records tat have matching values in both tables. 
+- The first part (select statement) is the same. then just need to specify wich column is the common column in both tables.
+
+```
+// Here we got the same typic select statment. 
+Select suppliers.company_name
+,unit_price
+,product_name
+FROM suppliers
+//then, we add the join statment
+INNER JOIN products // specify the table we the new data will come from
+ON suppliers.supplier_id = products.supplier_id;
+```
+There is not limit for joining multiples tables, but the performance of the query is goint to be affected with more than two teables.
+I want to know the symptom observation and the symptom name, i am located at pivot table 'characterization_special_condition'
+```
+SELECT c.symptom_observation, s.name
+FROM characterization_special_condition csc
+INNER JOIN characterizations c ON csc.characterization_id = c.id
+INNER JOIN special_conditions s ON csc.special_condition_id = s.id
+
+```
+
+### Aliases and Self Joins
+SQL alisases just store for the duration of the query.
+Match customers from the same city
+```
+SELECT A.CustomerName AS
+CustomerName1
+, B.CutomerName AS Customername2
+, A.City
+FROM Customers A, Customers B
+WHERE A.customer_id = B.customer_id
+AND A.city = B.city
+ORDER BY A.city
+```
+### Left, Right and Full other Join
+- SQL Lite only oes left Joins
+- This works similar to inner join, in this case, ALL THE RECORDS from the left table will appear
+- The result for rows that doesnt have the matching value, for example: customers without order_id will appear, and leave as null the information from the table at the right hand. 
+- Without this, we will not be able to have customer that have not place an order (inner join).
+- Right join does the same, but keeps the data from the table at the right hand, and leaves null matches that does not exist from table at the left hand.
+- Finally outer joins, brings everything from both tables.
+
+Please, bring all customers and it orders (if they have at least one)
+```
+SELECT c.name
+, o.id
+FROM Customers c
+LEFT JOIN Orders o
+ON c.order_id = o.id
+ORDER BY c.name
+```
+Please, bring only the customers that have an order, and include the order id
+```
+SELECT c.name
+,o.id
+FROM Customers c
+INNER JOIN Orders o
+ON c.order_id = o.id
+ORDER BY c.name
+```
+### Unions
+- The union operator is user to combine the result-set of two or more SELECT statements
+- Each SELECT statement within UNION must have the same number of columns.
+- Columns must have similar data types
+- The columns in each SELECT statement must be in the same order. 
+
+```
+SELECT column1
+FROM table1
+UNION
+SELECT column2
+FROM table2
+```
 
 # Adding registers.
 There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
