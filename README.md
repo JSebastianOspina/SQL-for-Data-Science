@@ -143,6 +143,8 @@ SELECT COUNT(OrderID) AS Total FROM Orders
 
 
 ## Joins
+![Captura de pantalla 2021-05-16 012849](https://user-images.githubusercontent.com/55632072/118387859-69f98d80-b5e6-11eb-9941-15e2c80dffea.png)
+
 - Allows data retrieval freom multiple tables in one query. 
 - Joins are not physical they persist for the duration of the query execution.
 
