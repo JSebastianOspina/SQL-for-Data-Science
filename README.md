@@ -401,6 +401,9 @@ INNER JOIN Employees e on et.employeeid = e.EmployeeID
 ```
 ![image](https://user-images.githubusercontent.com/55632072/118411698-75d36700-b65b-11eb-9fd6-33b79f643cab.png)
 
+# Profiling Data
+![image](https://user-images.githubusercontent.com/55632072/118412235-82a58a00-b65e-11eb-941c-c89f3ff31ef9.png)
+
 # Adding registers.
 There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
 ```
