@@ -322,7 +322,37 @@ SELECT DATE('now')
 or
 SELECT STRFTIME('%Y %m %d', 'now')
 ```
+# Case Statments
+Mimics if-then-else statement found in most programming languages 
+```
+CASE
+WHEN C1 THEN E1
+WHEN C2 THEN E2
+...
+ELSE [result else]
+END
 
+```
+```
+SELECT
+employeeid
+,firstname
+,lastname
+,city
+,CASE City
+WHEN 'ibague' THEN 'Soy de aca!'
+ELSE 'Impostor'
+END Tolimense
+from employees
+ORDER BY LastName, FirstName;
+```
+## Search Case Statment
+```
+CASE WHEN boolean_expression
+THEN result_expression
+ELSE else_result_expression
+END
+```
 # Adding registers.
 There are two ways to add register to a SQL database, it can be the short way (this depends on the created order)
 ```
@@ -334,6 +364,27 @@ VALUES
 'Descripcion 1',
 );
 ```
+
+```
+INSER INTO nombre_tabla 
+VALUES
+(
+SELECT
+trackid
+,name
+,bytes
+,CASE
+WHEN bytes < 300000 THEN 'small'
+WHEN bytes >= 300001 AND bytes <= 500000 THEN 'medium'
+WHEN bytes >= 500001 THEN 'large'
+ELSE 'Other'
+END bytescategory
+FROM
+tracks;
+```
+ID | TRACK_ID | NAME  | BYTES | BYTESCATEGORY
+1     2461      Hello   30000     small
+
 This specifict way, specify the order of the columns and then the information to ve added
 Do not use quotes for the column names, however, the information does require them.
 ```
